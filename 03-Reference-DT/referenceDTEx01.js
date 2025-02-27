@@ -78,14 +78,24 @@ let library = {
         {title: "English B1", author: "author intermediate", yearPublished: 2005}, 
         {title: "English C1", author: "author advanced", yearPublished: 2010}],
     getTotalBooks:function (){
-        return `Total books: ${this.books.length}`;
+        return `Total books: ${this.books.length}`;// how many elements are in the array
     },
+    /*findLatestBook: function () {
+        return this.books.reduce((latest, book) => {
+            if (book.yearPublished > latest.yearPublished) {
+                return book;
+            } else {
+                return latest;
+            }
+        });
+    }*/
     findLatestBook: function () {
-        let latestBook = this.books.reduce((latest, book) =>
+        let latestBook = this.books.reduce((latest, book) =>// in books we use 2 temporary variables
             book.yearPublished > latest.yearPublished ? book : latest
         );
         return `Latest book: ${latestBook.title}`;
     }
+    //2005>2000 YES, 2010>2005 YES, undefined>2010 NO => latest (3 element)
 }
 console.log(library.getTotalBooks());
 console.log(library.findLatestBook());
@@ -106,15 +116,17 @@ let students = [
   { name: "David", score: 80 }
 ];
 // Fix: Sort students by score in descending order
-students.sort((a, b) => b.score - a.score);
+students.sort((a, b) => b.score - a.score); // 2 temp variables (75<85)(90<75 C)(80<75 C)(90<85 C)
 console.log("Sorted students:", students);
 
 // Fix: Get top 2 students
-console.log("Top 2 students:", students.slice(0, 2));
+console.log("Top 2 students:", students.slice(0, 2)); // first 2 elements
 
 // Fix: Filter students who scored above 80
 console.log("Above 80:", students.filter(student => student.score > 80).map(student => student.name));
+// filter to get the ones above 80 and then we create a new array just with the names
 
 // Fix: Compute average score
 const average = students.reduce((sum, student) => sum + student.score, 0) / students.length;
+// accumulate every score and then divide it into the number of students
 console.log("Average score:", average); // 82.5
