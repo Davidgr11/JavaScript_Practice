@@ -43,7 +43,11 @@ console.log(numbersArray.some(num => num % 2 === 0));
 let duplicatesArray = [1,2,2,3,4,4,5];
 let newArray = [...new Set(duplicatesArray)];
 console.log(newArray);
-
+// Concat numbers array and new array
+const finalArray1 = numbersArray.concat(newArray, "Other");
+console.log(`Concat: ${finalArray1}`);
+const finalArray2 = [...numbersArray,...newArray, "Other"];
+console.log(`Concat2: ${finalArray2}`);
 
 
 console.info("Exercise 3: Functions");
@@ -130,3 +134,16 @@ console.log("Above 80:", students.filter(student => student.score > 80).map(stud
 const average = students.reduce((sum, student) => sum + student.score, 0) / students.length;
 // accumulate every score and then divide it into the number of students
 console.log("Average score:", average); // 82.5
+
+
+console.info("Exercise Spread Operator");
+const cart = [
+    {name: "TV", price:200},
+    {name: "Phone", price:500},
+    {name: "Mirror", price:70},
+    {name: "Book", price:50},
+];
+
+const newItem = {name: "Earphones", price:180};
+const cart2 = [...cart, newItem];
+console.log(cart2);
