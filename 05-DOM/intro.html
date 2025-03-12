@@ -1,0 +1,382 @@
+<!--
+Document Object Model (DOM)
+- Allow programs and scripts to dynamically access and update content.
+- The HTML DOM is a standard for how to get, change, add or delete HTML elements.
+-->
+
+<!--
+Finding HTML elements
+-->
+<script>
+  const element1 = document.getElementById("intro");
+  // return that element as object
+
+  const element2 = document.getElementsByTagName("p");
+  // return all the p elements
+
+  const element3 = document.getElementsByClassName("button");
+  // return a list of elements that have that class
+
+  const element4 = document.querySelectorAll("p.intro");
+  // return a list of all p elements that use the intro class
+</script>
+
+<!--Form Example-->
+<html>
+  <body>
+    <h2>JavaScript HTML DOM</h2>
+    <p>Finding HTML Elements Using <b>document.forms</b>.</p>
+
+    <form id="frm1" action="/action_page.php">
+      First name:
+      <input
+        type="text"
+        id="fname"
+        name="fname"
+        value="Donald"
+        oninput="upperCase()"
+      /><br />
+      Last name: <input type="text" name="lname" value="Duck" /><br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <p>These are the values of each element in the form:</p>
+    <p id="demo"></p>
+
+    <script>
+      const x = document.forms["frm1"];
+      let text = "";
+      for (let i = 0; i < x.length; i++) {
+        text += x.elements[i].value + "<br>";
+      }
+      document.getElementById("demo").innerHTML = text;
+
+      function upperCase() {
+        const x = document.getElementById("fname");
+        x.value = x.value.toUpperCase();
+      }
+
+      /*
+The following HTML objects (and object collections) are also accessible:
+
+document.anchors
+document.body
+document.documentElement
+document.embeds
+document.forms
+document.head
+document.images
+document.links
+document.scripts
+document.title
+*/
+    </script>
+  </body>
+</html>
+
+<!--
+Chaging HTML Elements
+
+Property - Description
+element.innerHTML =  new html content
+- Change the inner HTML of an element
+element.attribute = new value
+- Change the attribute value of an HTML element
+element.style.property = new style
+- Change the style of an HTML element
+element.setAttribute(attribute, value)
+- Change the attribute value of an HTML element
+-->
+
+<html>
+  <body onload="checkCookies()">
+    <p>-------------------------------------------------------</p>
+    <p id="p1">Hello World!</p>
+    <p id="p2">Hello World!</p>
+    <img id="img1" src="image.png" />Image<br />
+    <button
+      type="button"
+      onclick="document.getElementById('p1').style.color='red'"
+    >
+      Change Color
+    </button>
+    <p id="function1" onclick="changeText(this)">Click me</p>
+    <p id="cookies"></p>
+
+    <script>
+      // innerHTML
+      document.getElementById("p1").innerHTML = `Date: ${Date()}`;
+      const element = document.getElementById("p2");
+      element.innerHTML = "New Heading";
+
+      // attribute
+      document.getElementById("img1").src = "image2.jpg";
+
+      // write
+      document.write("write");
+
+      // style
+      document.getElementById("p2").style.color = "blue";
+
+      // onclick
+      function changeText(id) {
+        id.innerHTML = "Yessss!";
+      }
+
+      // onload
+      function checkCookies() {
+        let text = "";
+        if (navigator.cookieEnabled == true) {
+          text = "Cookies are enabled.";
+        } else {
+          text = "Cookies are not enabled.";
+        }
+        document.getElementById("cookies").innerHTML = text;
+      }
+    </script>
+  </body>
+</html>
+
+<!--
+Adding and Deleting Elements
+
+Method	Description
+document.createElement(element)
+- Create an HTML element
+document.removeChild(element)
+- Remove an HTML element
+document.appendChild(element)
+- Add an HTML element
+document.replaceChild(new, old)
+- Replace an HTML element
+document.write(text)
+- Write into the HTML output stream
+
+Adding Events Handlers
+document.getElementById(id).onclick = function(){code}
+- Adding event handler code to an onclick event
+-->
+
+<html>
+  <body>
+    <div id="div1">
+      <p id="p1">This is a paragraph.</p>
+      <p id="p2">This is another paragraph.</p>
+    </div>
+    <button onclick="deleteElement()">Remove element</button>
+  </body>
+  <script>
+    const para = document.createElement("p");
+    const node = document.createTextNode("This is new.");
+    para.appendChild(node);
+
+    const elementDiv = document.getElementById("div1");
+    elementDiv.appendChild(para);
+    //or
+    const child = document.getElementById("p1");
+    elementDiv.insertBefore(para, child);
+
+    //delete
+    const elementDelete = document.getElementById("p1").remove();
+    function deleteElement() {
+      document.getElementById("p1").remove();
+    }
+    elementDiv.removeChild(child);
+
+    //replace
+    elementDiv.replaceChild(para, child);
+  </script>
+</html>
+
+<script>
+  const enlace = document.createElement("X");
+  enlace.textContent = "About Us";
+  enlace.href = "/about";
+  console.log(enlace);
+
+  const navigation = document.querySelector(".navegation");
+  navigation.appendChild(enlace);
+  navigation.insertBefore(enlace, navigation.children[1]);
+  navigation.removeChild(navigation.children[2]);
+</script>
+
+<script>
+  const card = document.querySelector(".card");
+  card.children[1].children[1].textContent = "New";
+  card.children[0].src = "img/user.png";
+
+  card.parentElement.parentElement;
+
+  card.nextElementSibling;
+  card.previousElementSibling;
+</script>
+
+<!--Events-->
+<html>
+  <body>
+    <script>
+      const nav = document.querySelector(".nav");
+
+      nav.addEventListener("click", function () {
+        console.log("click");
+      });
+      // click || mouseenter || mouseout || mouseup
+      // dblclick || onmouseover || onmouseout
+      // onchange || oninput || submit (preventDefault())
+      // blur || copy || input
+      // scroll (getBoundingClientRect())
+
+      // Event Bubbling afects other/more elements that the expected
+      // e.stopPropagation()
+      // addEventListener(event, function, useCapture);
+      // classList.contains('info');
+    </script>
+  </body>
+</html>
+
+<!--Event Listener-->
+<script>
+  /*
+    Syntax
+    element.addEventListener(event, function, useCapture);
+  */
+  element.addEventListener("click", function () {
+    alert("Hello World!");
+  });
+
+  element.addEventListener("click", myFunction);
+
+  function myFunction() {
+    alert("Hello World!");
+  }
+
+  // Multiple event handlers to the same element
+  element.addEventListener("mouseover", myFirstFunction);
+  element.addEventListener("click", mySecondFunction);
+  element.addEventListener("mouseout", myThirdFunction);
+
+  // Passing parameters
+  element.addEventListener("click", function () {
+    myFunction(p1, p2);
+  });
+  element.addEventListener("click", () => myFunction(p1, p2));
+
+  // Remove event listener
+  element.removeEventListener("mousemove", myFunction);
+</script>
+
+<!--Nodes Navigation
+- The nodes in the node tree have hierarchical relationship to each other
+
+From the HTML you can read:
+<html> is the root node
+<html> has no parents
+<html> is the parent of <head> and <body>
+<head> is the first child of <html>
+<body> is the last child of <html>
+
+<head> has one child: <title>
+<title> has one child (a text node): "DOM Tutorial"
+<body> has two children: <h1> and <p>
+<h1> has one child: "DOM Lesson one"
+<p> has one child: "Hello world!"
+<h1> and <p> are siblings
+-->
+<html>
+  <head>
+    <title id="test">DOM Tutorial</title>
+  </head>
+
+  <body>
+    <h1>DOM Lesson one</h1>
+    <p>Hello world!</p>
+  </body>
+
+  <script>
+    // Accessing the text node of the tittle
+    let myTittle = document.getElementById("test");
+
+    myTittle.innerHTML;
+    myTittle.firstChild.nodeValue;
+    myTittle.childNodes[0].nodeValue;
+
+    myTittle.nodeName; //tittle
+
+    myTittle.nodeType; //1
+    /*
+      ELEMENT_NODE-1-<h1>
+      ATTRIBUTE_NODE-2-class
+      TEXT_NODE-3-HelloWorld
+      COMMENT_NODE-4-<!--comment->
+      DOCUMENT_NODE-9-HTMLdocument-(the parent of <html>)
+      DOCUMENT_TYPE_NODE-10-<!Doctype html>
+    */
+  </script>
+</html>
+
+<!--Navigating between nodes
+
+parentNode
+childNodes[nodenumber]
+firstChild
+lastChild
+nextSibling
+previousSibling
+
+
+document.body for accessing the document's body
+document.documentElement for accesing the full document
+-->
+
+<!--Collections
+Collection of document elements-->
+<html>
+  <body>
+    <h2>JavaScript HTML DOM</h2>
+
+    <p>Hello World!</p>
+
+    <p>Hello Norway!</p>
+
+    <p>Click the button to change the color of all p elements.</p>
+
+    <button onclick="myFunction()">Try it</button>
+
+    <script>
+      function myFunction() {
+        const myCollection = document.getElementsByTagName("p");
+        for (let i = 0; i < myCollection.length; i++) {
+          myCollection[i].style.color = "red";
+        }
+      }
+    </script>
+  </body>
+</html>
+
+<!--NodeList
+Collection of document nodes (elements, attributes and textnodes)-->
+<html>
+<body>
+
+<h2>JavaScript HTML DOM</h2>
+
+<p>Hello World!</p>
+
+<p>Hello Norway!</p>
+
+<p>Click the button to change the color of all p elements.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<script>
+function myFunction() {
+  const myNodelist = document.querySelectorAll("p");
+  for (let i = 0; i < myNodelist.length; i++) {
+    myNodelist[i].style.color = "red";
+  }
+}
+</script>
+
+</body>
+</html>
+

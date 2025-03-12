@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <style>
+        /*Setting the initial values*/
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+        button, select, input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        /*(#) stands for id and (.) stands for class*/
+        #changeText { background-color: blue; color: white; }
+        .changeColor { background-color: red; color: white; }
+        .modifySize { background-color: green; color: white; }
+        #toggleBold { background-color: purple; color: white; }
+        #reset { background-color: gray; color: white; }
+        #toggleTheme { background-color: black; color: white; }
+        .dark-mode {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>DOM Manipulation</h1>
+
+    <p id="text">This is a paragraph. Click the buttons to modify it.</p>
+
+    <!-- Buttons Definition-->
+    <button id="changeText">Change Text (getElementById)</button>
+    <button class="changeColor">Change Color (getElementsByClassName)</button>
+    <button class="modifySize">Increase Font Size (getElementsByTagName)</button>
+    <button id="toggleBold">Toggle Bold (querySelector)</button>
+    <button id="reset">Reset (querySelectorAll)</button>
+    <button id="toggleTheme">Toggle Dark Mode</button>
+
+    <!-- Input and Select -->
+    <br>
+    <input type="text" id="textColorInput" placeholder="Enter a valid color">
+    <button id="applyTextColor">Apply Text Color</button>
+
+    <br>
+    <label for="colorDropdown">Choose a text color:</label>
+    <select id="colorDropdown">
+        <option value="black">Black</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+    </select>
+
+    <script>
+        // Select the paragraph
+        let paragraph = document.getElementById("text");
+
+        // 🟢 Change Text (Using getElementById)
+        let buttonText = document.getElementById("changeText");
+        buttonText.addEventListener("click", function () {
+            paragraph.innerHTML = '✅ The text <span style="color: blue;">has been changed!</span>';
+        });
+
+        // 🟢 Change Color (Using getElementsByClassName)
+        let buttonColor = document.getElementsByClassName("changeColor")[0];
+        buttonColor.addEventListener("click", function () {
+            paragraph.style.color = "red";
+        });
+
+        // 🟢 Increase Font Size Dynamically (Using getElementsByTagName)
+        let buttonSize = document.getElementsByTagName("button")[2]; // Third button (increase size)
+        let fontSize = 16; // Default font size
+        buttonSize.addEventListener("click", function () {
+            fontSize += 2; // Increase size by 2px
+            paragraph.style.fontSize = fontSize + "px";
+        });
+
+        // 🟢 Toggle Bold (Using querySelector)
+        let buttonBold = document.querySelector("#toggleBold");
+        buttonBold.addEventListener("click", function () {
+            paragraph.style.fontWeight = paragraph.style.fontWeight === "bold" ? "normal" : "bold";
+        });
+
+        // 🟢 Reset Everything (Using querySelectorAll)
+        let buttons = document.querySelectorAll("button");
+        let buttonReset = buttons[4]; // 5th button (reset)
+        buttonReset.addEventListener("click", function () {
+            paragraph.innerHTML = 'This is a paragraph. Click the buttons to modify it.';
+            paragraph.style.color = "black";
+            paragraph.style.fontSize = "16px";
+            paragraph.style.fontWeight = "normal";
+            fontSize = 16; // Reset font size tracker
+        });
+
+        // 🟢 Dark Mode Toggle (Using querySelector)
+        let buttonTheme = document.querySelector("#toggleTheme");
+        buttonTheme.addEventListener("click", function () {
+            document.body.classList.toggle("dark-mode");
+        });
+
+        // 🟢 Apply Text Color from Input Field
+        let colorInput = document.getElementById("textColorInput");
+        let applyColorButton = document.getElementById("applyTextColor");
+
+        applyColorButton.addEventListener("click", function () {
+            let color = colorInput.value.trim();
+            if (color) {
+                paragraph.style.color = color;
+            }
+        });
+
+        // 🟢 Change Text Color Using Dropdown
+        let colorDropdown = document.getElementById("colorDropdown");
+        colorDropdown.addEventListener("change", function () {
+            paragraph.style.color = this.value;
+        });
+
+    </script>
+
+</body>
+</html>
