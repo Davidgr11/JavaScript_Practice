@@ -135,6 +135,7 @@ const divideNumbers = (a,b) => {
 
 console.log(divideNumbers(10, 2));
 console.log(divideNumbers(10, 0));
+console.log(divideNumbers(10, "a"));
 
 
 /*

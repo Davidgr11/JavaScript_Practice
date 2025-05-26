@@ -10,7 +10,7 @@ console.log(arrowLearning());
 
 // Arrow Function with parameters
 const arrowLearning2 = (language, language2) => `Learning ${language} & ${language2}`;
-console.log(arrowLearning2("JavaScript", "Nodejs"));
+console.log(arrowLearning2("JavaScript", "TypeScript"));
 
 // In object methods it's better to use regular functions
 
@@ -31,3 +31,5 @@ const musicReproducer = {
 musicReproducer.newSong = "Waka Waka";
 let currentSong = musicReproducer.getSong;
 console.log(currentSong);
+console.log(musicReproducer.song);
+console.log(musicReproducer.reproduce("Despacito"));

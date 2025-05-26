@@ -22,5 +22,5 @@ function exampleBlock() {
         console.log(b); // Works
     }
     console.log(a); // Works
-    console.log(b); // Error! b is not accesible the block {}
+    console.log(b); // Error! b is not accesible outside the block {}
 }

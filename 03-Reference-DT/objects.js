@@ -62,6 +62,6 @@ console.log(person1.greet());
 
 /*
 Best Practice:
-Use dot notation (obj.property) for known keys.
-Use bracket notation (obj["property"]) when accessing dynamic keys.
+- Use dot notation (obj.property) for known keys.
+- Use bracket notation (obj["property"]) when accessing dynamic keys.
 */

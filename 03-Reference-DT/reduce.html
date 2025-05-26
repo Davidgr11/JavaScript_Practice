@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reduce Practice Sheet</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #121212;
+      color: #f0f0f0;
+    }
+    h2 {
+      border-bottom: 2px solid #444;
+      margin-top: 30px;
+    }
+    pre {
+      background: #1e1e1e;
+      padding: 10px;
+      border: 1px solid #333;
+      overflow-x: auto;
+    }
+    button {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      padding: 10px 15px;
+      font-size: 14px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    .output {
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #80ff80;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reduce() Practice Sheet</h1>
+
+  <div id="exercise-container"></div>
+
+  <script>
+    const exercises = [
+      {
+        title: "1. Sumar todos los valores",
+        code: `let numeros = [2, 4, 6, 8];
+let resultado = numeros.reduce((acc, n) => acc + n, 0);
+document.getElementById('out1').textContent = resultado;`,
+        id: "out1"
+      },
+      {
+        title: "2. Contar ocurrencias de palabras",
+        code: `let palabras = [\"sol\", \"luna\", \"sol\", \"estrella\", \"luna\"];
+let conteo = palabras.reduce((acc, palabra) => {
+  acc[palabra] = (acc[palabra] || 0) + 1;
+  return acc;
+}, {});
+document.getElementById('out2').textContent = JSON.stringify(conteo);`,
+        id: "out2"
+      },
+      {
+        title: "3. Promedio de edades",
+        code: `let personas = [
+  { nombre: \"Ana\", edad: 20 },
+  { nombre: \"Luis\", edad: 30 },
+  { nombre: \"Eva\", edad: 40 }
+];
+let promedio = personas.reduce((acc, p) => acc + p.edad, 0) / personas.length;
+document.getElementById('out3').textContent = promedio;`,
+        id: "out3"
+      },
+      {
+        title: "4. Agrupar productos por categoría",
+        code: `let productos = [
+  { nombre: \"TV\", categoria: \"Electrónica\" },
+  { nombre: \"Libro\", categoria: \"Lectura\" },
+  { nombre: \"Tablet\", categoria: \"Electrónica\" },
+];
+let agrupado = productos.reduce((acc, prod) => {
+  acc[prod.categoria] = acc[prod.categoria] || [];
+  acc[prod.categoria].push(prod.nombre);
+  return acc;
+}, {});
+document.getElementById('out4').textContent = JSON.stringify(agrupado);`,
+        id: "out4"
+      },
+      {
+        title: "5. Sumar todos los números de un objeto con arrays",
+        code: `let datos = {
+  a: [1, 2],
+  b: [3, 4],
+  c: [5]
+};
+let total = Object.values(datos).reduce((acc, arr) => acc + arr.reduce((a, b) => a + b, 0), 0);
+document.getElementById('out5').textContent = total;`,
+        id: "out5"
+      },
+      {
+        title: "6. Aplanar un objeto de arrays en un solo array",
+        code: `let dias = {
+  lunes: [\"ir al gym\", \"leer\"],
+  martes: [\"trabajar\", \"cocinar\"],
+  miercoles: [\"estudiar\"]
+};
+let plano = Object.values(dias).reduce((acc, arr) => acc.concat(arr), []);
+document.getElementById('out6').textContent = JSON.stringify(plano);`,
+        id: "out6"
+      },
+      {
+        title: "7. Ejecutar funciones almacenadas en un objeto",
+        code: `let funciones = {
+  uno: () => 1,
+  dos: () => 2,
+  tres: () => 3
+};
+let suma = Object.values(funciones).reduce((acc, fn) => acc + fn(), 0);
+document.getElementById('out7').textContent = suma;`,
+        id: "out7"
+      }
+    ];
+
+    const container = document.getElementById("exercise-container");
+
+    exercises.forEach((ex, index) => {
+      const section = document.createElement("div");
+      section.innerHTML = `
+        <h2>${ex.title}</h2>
+        <pre>${ex.code}</pre>
+        <button onclick="run${index}()">Run</button>
+        <div class="output" id="${ex.id}">[Result here]</div>
+      `;
+      container.appendChild(section);
+    });
+
+    window.run0 = function () {
+      let numeros = [2, 4, 6, 8];
+      let resultado = numeros.reduce((acc, n) => acc + n, 0);
+      document.getElementById('out1').textContent = resultado;
+    };
+    window.run1 = function () {
+      let palabras = ["sol", "luna", "sol", "estrella", "luna"];
+      let conteo = palabras.reduce((acc, palabra) => {
+        acc[palabra] = (acc[palabra] || 0) + 1;
+        return acc;
+      }, {});
+      document.getElementById('out2').textContent = JSON.stringify(conteo);
+    };
+    window.run2 = function () {
+      let personas = [
+        { nombre: "Ana", edad: 20 },
+        { nombre: "Luis", edad: 30 },
+        { nombre: "Eva", edad: 40 }
+      ];
+      let promedio = personas.reduce((acc, p) => acc + p.edad, 0) / personas.length;
+      document.getElementById('out3').textContent = promedio;
+    };
+    window.run3 = function () {
+      let productos = [
+        { nombre: "TV", categoria: "Electrónica" },
+        { nombre: "Libro", categoria: "Lectura" },
+        { nombre: "Tablet", categoria: "Electrónica" }
+      ];
+      let agrupado = productos.reduce((acc, prod) => {
+        acc[prod.categoria] = acc[prod.categoria] || [];
+        acc[prod.categoria].push(prod.nombre);
+        return acc;
+      }, {});
+      document.getElementById('out4').textContent = JSON.stringify(agrupado);
+    };
+    window.run4 = function () {
+      let datos = {
+        a: [1, 2],
+        b: [3, 4],
+        c: [5]
+      };
+      let total = Object.values(datos).reduce((acc, arr) => acc + arr.reduce((a, b) => a + b, 0), 0);
+      document.getElementById('out5').textContent = total;
+    };
+    window.run5 = function () {
+      let dias = {
+        lunes: ["ir al gym", "leer"],
+        martes: ["trabajar", "cocinar"],
+        miercoles: ["estudiar"]
+      };
+      let plano = Object.values(dias).reduce((acc, arr) => acc.concat(arr), []);
+      document.getElementById('out6').textContent = JSON.stringify(plano);
+    };
+    window.run6 = function () {
+      let funciones = {
+        uno: () => 1,
+        dos: () => 2,
+        tres: () => 3
+      };
+      let suma = Object.values(funciones).reduce((acc, fn) => acc + fn(), 0);
+      document.getElementById('out7').textContent = suma;
+    };
+  </script>
+</body>
+</html>

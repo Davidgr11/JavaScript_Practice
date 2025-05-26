@@ -73,6 +73,7 @@ let friends = ["Karl", "Mario", "Lisa", "Patrick"];
 friends.forEach(friend => console.log(`Friend ${friend}`));
 
 // FOR OF (Best for iterable objects (arrays, sets, maps))
+// Focus on the values, not the index
 console.info("*For of*")
 for (let friend of friends) {
     console.log(friend);

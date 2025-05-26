@@ -1,3 +1,4 @@
+console.info("--- EXERCISES ---");
 console.info("Exercise 1: Object Manipulation");
 /*
 -Create an object representing a movie with title, director, and year.

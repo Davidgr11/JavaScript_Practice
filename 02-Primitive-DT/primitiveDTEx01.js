@@ -1,4 +1,4 @@
-console.info("----------specials.js (explanation)");
+console.info("----------Primitive Data Types Exercises");
 
 console.log("Exercise 1 Strings");
 /*
@@ -49,9 +49,9 @@ console.log("Boolean({}):", Boolean({})); // true
 
 /*
 Final Recommendations:
-Use template literals (${} inside backticks ``) for cleaner logging.
-Declare variables properly with let or const to avoid implicit globals.
-Use Math functions (like Math.floor()) when converting to an integer.
-Improve logging clarity with descriptive messages.
-Primitive data types are immutable (cannot be modified) and are stored by value.
+- Use template literals (${} inside backticks ``) for cleaner logging.
+- Declare variables properly with let or const to avoid implicit globals.
+- Use Math functions (like Math.floor()) when converting to an integer.
+- Improve logging clarity with descriptive messages.
+- Primitive data types are immutable (cannot be modified) and are stored by value.
 */

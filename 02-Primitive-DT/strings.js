@@ -1,20 +1,20 @@
 console.info("----------strings.js (explanation)");
 // STRINGS
 const myName = "Jason";
-let product = "Phone"
+let product = "Phone";
 console.log(myName, product);
 
-// Lenght Method (number)
+// Lenght Method (return number or characters)
 let myNameLenght = myName.length;
-console.log(myNameLenght); // number of characters
+console.log(myNameLenght);
 
-// Includes Method (boolean)
+// Includes Method (return boolean)
 let myNameIncludes = myName.includes("son");// sensitive Aa
 console.log(myNameIncludes);
 
 // Concat Method (string) [+, `${}`]
 const my2Name = "Mahomes";
-let fullName = myName + " " + my2Name;//.concat("") or , also can be used
+let fullName = myName + " " + my2Name;//.concat("") or , also can be used ...
 let fullNameReverse = `${my2Name} ${myName}`;
 console.log(fullName, fullNameReverse);
 
@@ -28,8 +28,8 @@ console.log(fullName);
 
 // Cut || Selection Methods
 console.log(fullName.length);
-console.log(fullName.slice(0,10));// range
-console.log(fullName.substring(2,0)); //range
+console.log(fullName.slice(0,10));// characters range
+console.log(fullName.substring(2,0)); //final - start
 console.log(fullName.charAt(0));
 console.log(fullName.indexOf("ah"));
 
