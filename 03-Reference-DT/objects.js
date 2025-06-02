@@ -60,8 +60,36 @@ const person1 = new Person("Jason", 50, {father: "Hall", mother : "Marth"}, func
 console.log(person1);
 console.log(person1.greet());
 
+// Adding properties and methods to the prototype
+Person.prototype.country = "Unknown"; //default property
+Person.prototype.introduce = function() {
+    return `Hi, I'm ${this.name} and I'm ${this.age} years old.`;
+};
+
+
+// DATE Object
+const currentDate = new Date();
+console.log(`Current Date: ${currentDate}`);
+
+const specificDate = new Date(2023, 0, 1, 18, 30, 15); // January 1, 2023
+specificDate.toDateString(); // Convert to date string
+console.log(`Specific Date: ${specificDate}`);
+
+const timestamp = Date.now();
+console.log(`Timestamp: ${timestamp}`);
+
+// Date methods
+console.log(`Year: ${currentDate.getFullYear()}`);
+console.log(`Month: ${currentDate.getMonth() + 1}`); // Months are 0-indexed
+console.log(`Date: ${currentDate.getDate()}`);
+console.log(`Day: ${currentDate.getDay()}`); // 0 = Sunday, 1 = Monday, etc.
+console.log(`Hours: ${currentDate.getHours()}`);
+console.log(`Minutes: ${currentDate.getMinutes()}`);
+
 /*
 Best Practice:
 - Use dot notation (obj.property) for known keys.
 - Use bracket notation (obj["property"]) when accessing dynamic keys.
+- Use `Object.freeze()` to prevent modifications if the object should remain constant.
+- Use object literals for object creation when possible {} instead of new Object().
 */

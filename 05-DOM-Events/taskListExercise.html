@@ -6,9 +6,38 @@
     <title>To-Do List Challenge</title>
     <style>
         /* Basic styles for clarity */
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .completed { text-decoration: line-through; opacity: 0.6; }
+        body { font-family: Arial, sans-serif; margin: 30px;}
+        .completed { 
+            text-decoration: line-through; 
+            opacity: 0.6;
+            background-color: rgb(228, 255, 196) !important;
+        }
         .hidden { display: none; }
+        .task {
+            background-color: bisque; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            padding: 10px 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+        }
+        .done-btn {
+            background-color: transparent;
+            border: none;
+        }
+        .done-btn:hover {
+            cursor: pointer;
+            transform: scale(1.2);
+        }
     </style>
 </head>
 <body>
@@ -47,6 +76,7 @@
 
             // Create Done Button
             let doneBtn = document.createElement("button");
+            doneBtn.classList.add("done-btn");
             doneBtn.textContent = "✅";
             doneBtn.addEventListener("click", function () {
                 li.classList.toggle("completed");
@@ -54,13 +84,17 @@
 
             // Create Delete Button
             let deleteBtn = document.createElement("button");
+            deleteBtn.classList.add("done-btn");
             deleteBtn.textContent = "🗑️";
             deleteBtn.addEventListener("click", function () {
                 li.remove();
             });
 
-            li.appendChild(doneBtn);
-            li.appendChild(deleteBtn);
+            let divLi = document.createElement("div");
+
+            divLi.appendChild(doneBtn);
+            divLi.appendChild(deleteBtn);
+            li.appendChild(divLi);
             taskList.appendChild(li);
 
             taskInput.value = ""; // Clear input field
@@ -72,13 +106,13 @@
             tasks.forEach(task => {
                 switch (filterTasks.value) {
                     case "all":
-                        task.style.display = "block";
+                        task.style.display = "flex";
                         break;
                     case "completed":
-                        task.classList.contains("completed") ? task.style.display = "block" : task.style.display = "none";
+                        task.classList.contains("completed") ? task.style.display = "flex" : task.style.display = "none";
                         break;
                     case "pending":
-                        !task.classList.contains("completed") ? task.style.display = "block" : task.style.display = "none";
+                        !task.classList.contains("completed") ? task.style.display = "flex" : task.style.display = "none";
                         break;
                 }
             });
