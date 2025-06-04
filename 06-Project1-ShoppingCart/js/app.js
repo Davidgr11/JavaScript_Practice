@@ -10,6 +10,12 @@ loadEventListeners();
 function loadEventListeners() {
     courses.addEventListener('click', addCourse);
     cart.addEventListener('click', removeCourse);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        cartItems = JSON.parse(localStorage.getItem('carrito')) || []; // get the cart items from localStorage or initialize as empty array
+        renderCart(); // render the cart items on page load
+    });
+
     clearCartBtn.addEventListener('click', (e) => {
         cartItems = []; // clear the cart items array
         renderCart(); // re-render the cart
@@ -86,5 +92,8 @@ function renderCart() {
 
         //add html to the tbody
         cartContainer.appendChild(row);
+
+        //add to localStorage
+        localStorage.setItem('carrito', JSON.stringify(cartItems));
     })
 }
