@@ -86,6 +86,10 @@ console.log(`Day: ${currentDate.getDay()}`); // 0 = Sunday, 1 = Monday, etc.
 console.log(`Hours: ${currentDate.getHours()}`);
 console.log(`Minutes: ${currentDate.getMinutes()}`);
 
+moment.locale('es-mx');
+console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
+console.log(moment().format('LLL'));
+
 /*
 Best Practice:
 - Use dot notation (obj.property) for known keys.
