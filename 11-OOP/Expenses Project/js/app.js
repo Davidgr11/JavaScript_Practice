@@ -22,9 +22,8 @@ class Presupuesto {
     nuevoGasto(gasto){
         this.gastos = [...this.gastos, gasto];
     }
-    modificaRestante(){
-        const gastosTotal = this.gastos.reduce((total, gasto) => total + gasto.cantidad, 0);
-        this.restante -= gastosTotal;
+    modificaRestante(cantidad){
+        this.restante -= cantidad;
     }
     eliminarGasto(id) {
         const eliminado = this.gastos.find(gasto => gasto.id === id);
@@ -146,7 +145,7 @@ function agregarGasto(e){
         id: Date.now() // Unique ID based on current timestamp
     }
     presupuesto.nuevoGasto(gastoObj); // Add the new expense to the budget
-    presupuesto.modificaRestante();
+    presupuesto.modificaRestante(gastoObj.cantidad); // Update the remaining budget after adding the expense
     ui.imprimirAlerta('Gasto agregado correctamente', 'exito');
     ui.agregaListado(presupuesto.gastos); // Call to UI method to add the expense to the list
     ui.actualizarRestante(presupuesto.restante); // Update the remaining budget in the UI
