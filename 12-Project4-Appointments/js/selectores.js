@@ -1,0 +1,10 @@
+export const pacienteInput = document.querySelector('#paciente');
+export const propietarioInput = document.querySelector('#propietario');
+export const emailInput = document.querySelector('#email');
+export const fechaInput = document.querySelector('#fecha');
+export const sintomasInput = document.querySelector('#sintomas');
+export const form = document.querySelector('#formulario-cita');
+export const citasLista = document.querySelector('#citas');
+export const btnEliminar = document.querySelector('#btn-eliminar');
+export const btnEditar = document.querySelector('#btn-editar');
+export const formInput = document.querySelector('#formulario-cita input[type="submit"]');
