@@ -156,7 +156,7 @@ const citas = new AdminCitas();
 
 // FUNCIONES
 function datosCita(e) {
-    citaObj[e.target.name] = e.target.value.trim();
+    citaObj[e.target.name] = e.target.value.trim(); // Dynamic key assignment
 }
 
 function submitCita(e) {
@@ -168,7 +168,7 @@ function submitCita(e) {
     }
 
     if (editando) {
-        citas.editarCita({...citaObj});
+        citas.editarCita({...citaObj}); // Spread operator to create a new object
         const notificacion = new Notificacion('Editado correctamente', 'exito');
     }else{
         citas.agregarCita({ ...citaObj });
