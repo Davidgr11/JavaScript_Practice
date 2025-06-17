@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>To-Do List con IndexedDB</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 2em auto; padding: 0 1em; }
+    #tasks { margin-top: 1em; }
+    .task { display: flex; justify-content: space-between; align-items: center; padding: 0.5em; border-bottom: 1px solid #ccc; }
+    .delete { background: none; border: none; font-size: 1.2em; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>To-Do List con IndexedDB</h1>
+  <input id="taskInput" type="text" placeholder="Nueva tarea">
+  <button id="addBtn">Añadir</button>
+  <div id="tasks"></div>
+
+  <script>
+    // 1️⃣ Declaramos la variable para la base de datos
+    let db;
+
+    // 2️⃣ Abrimos (o creamos) la DB 'todo' versión 1
+    const request = indexedDB.open('todo', 1);
+
+    // Manejo de errores al abrir la DB\    
+    request.onerror = e => console.error('Error al abrir la DB', e);
+
+    // Este evento sólo se dispara la primera vez o cuando sube de versión
+    request.onupgradeneeded = e => {
+      db = e.target.result;
+      // Creamos el object store 'tasks' con clave primaria 'id', autoIncrement
+      if (!db.objectStoreNames.contains('tasks')) {
+        db.createObjectStore('tasks', { keyPath: 'id', autoIncrement: true });
+      }
+    };
+
+    // Cuando la DB está lista
+    request.onsuccess = e => {
+      db = e.target.result;
+      // Cargamos las tareas existentes
+      displayTasks();
+    };
+
+    // 3️⃣ Función para añadir una tarea
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      // Creamos una transacción de lectura/escritura
+      const tx = db.transaction('tasks', 'readwrite');
+      const store = tx.objectStore('tasks');
+      // Agregamos la tarea
+      store.add({ text });
+
+      tx.oncomplete = () => {
+        input.value = '';
+        displayTasks();
+      };
+
+      tx.onerror = () => console.error('Error al añadir la tarea');
+    }
+
+    // 4️⃣ Función para mostrar todas las tareas
+    function displayTasks() {
+      const tasksDiv = document.getElementById('tasks');
+      tasksDiv.innerHTML = '';
+
+      // Transacción de sólo lectura
+      const tx = db.transaction('tasks', 'readonly');
+      const store = tx.objectStore('tasks');
+
+      // getAll() nos devuelve un array con todos los registros
+      const requestAll = store.getAll();
+      requestAll.onsuccess = () => {
+        const tasks = requestAll.result;
+        if (tasks.length === 0) {
+          tasksDiv.innerHTML = '<p>No hay tareas</p>';
+        } else {
+          tasks.forEach(task => {
+            const div = document.createElement('div');
+            div.className = 'task';
+            div.textContent = task.text;
+
+            // Botón de eliminar
+            const btn = document.createElement('button');
+            btn.textContent = '✖';
+            btn.className = 'delete';
+            btn.onclick = () => deleteTask(task.id);
+
+            div.appendChild(btn);
+            tasksDiv.appendChild(div);
+          });
+        }
+      };
+    }
+
+    // 5️⃣ Función para eliminar una tarea por su ID
+    function deleteTask(id) {
+      const tx = db.transaction('tasks', 'readwrite');
+      const store = tx.objectStore('tasks');
+      store.delete(id);
+
+      tx.oncomplete = () => displayTasks();
+    }
+
+    // 6️⃣ Conectamos el botón de añadir
+    document.getElementById('addBtn').onclick = addTask;
+  </script>
+</body>
+</html>
