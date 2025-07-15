@@ -1,0 +1,22 @@
+{
+  "name": "jest",
+  "version": "1.0.0",
+  "description": "learning jest",
+  "license": "ISC",
+  "author": "david a gonzalez r",
+  "type": "commonjs",
+  "main": "index.js",
+ "scripts":{
+      "test": "jest --env=jsdom"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  }
+}

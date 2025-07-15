@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing cliente2 Cliente2 existe 1`] = `
+{
+  "nombre": "David",
+  "saldo": 500,
+  "tipo": "Premium",
+}
+`;
+
+exports[`Testing cliente2 Cliente2 tiene nombre 1`] = `"David"`;
