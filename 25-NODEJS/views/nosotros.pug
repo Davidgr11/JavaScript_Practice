@@ -1,0 +1,33 @@
+extends ./layout/index
+
+block contenido
+    main.container.mt-5
+        .row
+            .col-md-5
+                img(src="img/nosotros.jpg", alt="imagen sobre nosotros", class="img-fluid")
+            .col-md-7
+                h1 #{pagina}
+                blockquote Viajar es nuestra pasión y nuestra vocación. Nos dedicamos a diseñar experiencias que van más allá de los destinos, pensando en cada detalle para que cada viaje se convierta en un recuerdo inolvidable. Sabemos que cada persona y cada grupo es diferente, por eso ofrecemos un servicio personalizado y flexible, adaptándonos a las necesidades y sueños de cada viajero.
+
+                p Nuestro equipo está formado por profesionales con amplia experiencia en el sector turístico. Nos mantenemos actualizados sobre tendencias, rutas y destinos, siempre buscando las mejores opciones para nuestros clientes. Trabajamos con proveedores confiables y seleccionamos cuidadosamente cada servicio, desde el alojamiento hasta las actividades, para asegurar calidad y tranquilidad en todo momento.
+
+                p Nos enorgullece acompañar a nuestros viajeros desde la planificación hasta el regreso a casa. Creemos en la importancia de una atención cercana y honesta, y estamos comprometidos en brindar soluciones rápidas y eficaces ante cualquier imprevisto. Con nosotros, puedes estar seguro de que tu viaje estará en buenas manos.
+    
+    .listado-iconos
+        .container.mt-5.py-5.text-center
+            .row    
+                .col-md-4
+                    img(src="img/icono_seguridad.svg", alt="icono seguridad", class="img-fluid mb-4")
+                    h2.mb-4 Seguridad
+                    p La seguridad de nuestros clientes es nuestra prioridad. Seleccionamos cuidadosamente todos nuestros proveedores y servicios para garantizar viajes tranquilos y confiables.
+
+                .col-md-4
+                    img(src="img/icono_destinos.svg", alt="icono destinos", class="img-fluid mb-4")
+                    h2.mb-4 Mejores Destinos
+                    p Ofrecemos una cuidada selección de los mejores destinos, eligiendo lugares únicos y experiencias inolvidables para que cada viaje sea especial.
+
+                .col-md-4
+                    img(src="img/icono_precios.svg", alt="icono precios", class="img-fluid mb-4")
+                    h2.mb-4 Los Mejores Precios
+                    p Nos esforzamos por brindarte los mejores precios del mercado, permitiéndote disfrutar al máximo sin preocuparte por tu presupuesto.
+                    
