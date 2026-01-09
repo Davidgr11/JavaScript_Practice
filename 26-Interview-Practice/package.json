@@ -5,7 +5,11 @@
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "1": "nodemon 01-recall-basis.js"
+    "1": "nodemon 01-recall-basis.js",
+    "2": "nodemon 02-recall-basis.js",
+    "3": "nodemon 03-recall-basis.js",
+    "4": "nodemon 04-recall-basis.js",
+    "5": "nodemon 05-recall-basis.js"
   },
   "keywords": [],
   "author": "",

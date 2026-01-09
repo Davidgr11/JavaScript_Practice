@@ -60,7 +60,7 @@ const orders = [
     }
 ];
 
-console.log('\nTASK 1:');
+console.log('\nTASK 1: Calculate the total revenue from all "completed" orders');
 // I need to filter the completed orders -> Accumulate the total of the orders -> Accumulate the total per order
 const totalRevenue = orders.filter(order => order.status === 'completed')
     .reduce((acc, order) => {
@@ -82,7 +82,7 @@ const totalRevenue = orders.reduce((acc, order) => {
 console.log(`The total revenue for the completed orders it's $${totalRevenue}`);
 
 
-console.log("\nTASK 2:")
+console.log("\nTASK 2: Find the customer who spent the most money (sum of all their orders)")
 // I need to groud the orders by costumer -> calculate the total per each costumer -> evaluate the max
 const customerTotals = orders.reduce((acc, order) => {
     const orderTotal = order.items.reduce((acc, product) => acc + (product.price * product.quantity), 0);
@@ -96,7 +96,7 @@ let bestCustomer = { name: null, total: 0 };
 console.log(Object.entries(customerTotals)); // I need a map for that type of iteration
 for (let [customer, total] of Object.entries(customerTotals)) {
     if (total > bestCustomer.total) {
-        bestCustomer = { customer, total }
+        bestCustomer = { customer, total };
     }
 }
 
@@ -120,7 +120,7 @@ for (let [customer, total] of Object.entries(customerTotals)) {
 console.log(customerTotals, bestCustomer);
 console.log(`The best customer it's ${bestCustomer.name} spending $${bestCustomer.total}`);
 
-console.log("\nTASK 3:");
+console.log("\nTASK 3: Get a list of all unique products sold");
 
 
 const products = orders.reduce((acc, order) => {
@@ -132,7 +132,7 @@ console.log(products);
 const uniqueProducts = [...new Set(products)];
 console.log(uniqueProducts);
 
-console.log("\nTASK 4:");
+console.log("\nTASK 4: Group orders by status and count how many orders are in each status");
 // In need to group orders by status (reduce) and count how many per status key -> value  --- status -> #
 
 const ordersByStatus = orders.reduce((acc, order) => {
@@ -151,7 +151,7 @@ for (status in ordersByStatus) {
 }
 
 
-console.log("\nTASK 5:");
+console.log("\nTASK 5: Find the most expensive single item across all orders");
 // I need to get all the items 
 const allItems = orders.flatMap(order => order.items);
 /*
@@ -166,7 +166,7 @@ const mostExpensive = allItems.reduce((max, item) => item.price > max.price ? it
 console.log(`The most expensive product it's: ${mostExpensive.product} - $${mostExpensive.price}`);
 
 
-console.log("\nTASK 6:");
+console.log("\nTASK 6: Create a new array with orders that have total value > $500, adding a priority property");
 
 const newOrders = orders.reduce((acc, order) => {
 
